@@ -5,9 +5,9 @@ class PruebaService extends PokeApiService {
   constructor() {
     super("pokemon");
   }
-  getPokemons = (data: ServiceParams) => {
+  getPokemonsService = (data: ServiceParams) => {
     const { offset, limit } = data;
-    let stringParams: string = `/?offset=${offset}&limit=${limit}`;
+    const stringParams: string = `/?offset=${offset}&limit=${limit}`;
     return this.client.get<GetResponse>(stringParams);
   };
 }

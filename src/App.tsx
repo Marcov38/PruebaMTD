@@ -1,11 +1,16 @@
-import "./App.css";
-import Prueba from "./features/prueba/Prueba";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import HomePage from "./pages/HomePage/HomePage";
+import PokemonListPage from "./pages/PokemonListPage/PokemonListPage";
 
 function App() {
   return (
-    <>
-      <Prueba />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/pokemons" element={<PokemonListPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

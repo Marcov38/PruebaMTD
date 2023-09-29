@@ -1,4 +1,4 @@
-import { GetResponse } from "../../features/prueba/types";
+import { GetResponse } from "../../features/pokeList/types";
 import {
   GET_POKEMONS_FAILURE,
   GET_POKEMONS_REQUEST,

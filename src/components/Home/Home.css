@@ -1,0 +1,40 @@
+.home {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../../assets/fongo.jpeg);
+  height: 100vh;
+}
+
+.home-title {
+  color: whitesmoke;
+  text-align: center;
+  width: 100%;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+}
+
+.homepage-cards {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.home-cards {
+  border: 1px white solid;
+  padding: 5px;
+  width: 100%;
+}
+
+.home-cards-button {
+  color: #ffffff;
+  background: #3b82f6;
+  border: 1px solid #3b82f6;
+  cursor: pointer;
+  border-radius: 5px;
+}
