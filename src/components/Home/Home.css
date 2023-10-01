@@ -31,6 +31,10 @@
   width: 100%;
 }
 
+.home-cards card {
+  padding: 0;
+}
+
 .home-cards-button {
   color: #ffffff;
   background: #3b82f6;
