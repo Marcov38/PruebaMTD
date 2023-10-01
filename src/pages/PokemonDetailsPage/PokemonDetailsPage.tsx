@@ -1,55 +1,28 @@
 import { lazy, Suspense, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  GetResponse,
-  Pokemon,
-  ServiceParams,
-} from "../../features/pokeList/types";
-import { getPokemons } from "../../features/pokeList/asyncAction";
-import { saveDetailsPokemon } from "../../redux/actions/saveDetailsPokemon";
+import { getPokemonsDetails } from "../../features/pokemonDetails/asyncAction";
 
 const PokemonDetails = lazy(
   () => import("../../features/pokemonDetails/PokemonDetails")
 );
 
 const PokemonDetailsPage = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
 
-  const params: ServiceParams = {
-    offset: 0,
-    limit: 20,
-  };
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getPokemons(params, dispatch);
-
-      const dataResults: GetResponse = response?.payload;
-
-      const pokemonPromise = dataResults.results.map(async (pokemon) => {
-        const responseDetail = await fetch(pokemon.url);
-        const data = await responseDetail.json();
-        return data;
-      });
-
-      const detailsData = await Promise.all(pokemonPromise);
-      dispatch(saveDetailsPokemon(detailsData));
+      await getPokemonsDetails(id, dispatch);
     };
 
     fetchData();
-  }, []);
-
-  const pokeDetails = useSelector((state: any) => state.pokemonDetails.data);
-  const { id } = useParams();
-
-  const pokemonInfo = pokeDetails?.find(
-    (poke: Pokemon) => poke.id.toString() === id
-  );
+  }, [id]);
 
   return (
     <div>
       <Suspense fallback={<div>Cargando...</div>}>
-        <PokemonDetails pokemonInfo={pokemonInfo} />
+        <PokemonDetails />
       </Suspense>
     </div>
   );

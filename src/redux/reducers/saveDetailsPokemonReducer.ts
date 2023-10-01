@@ -1,5 +1,10 @@
 import { Pokemon } from "../../features/pokeList/types";
-import { SAVE_DETAILS } from "../types/savePokemonDetailsTypes";
+import {
+  GET_DETAILS_FAILURE,
+  GET_DETAILS_REQUEST,
+  GET_DETAILS_SUCCESS,
+  SAVE_DETAILS,
+} from "../types/savePokemonDetailsTypes";
 
 export interface IActions {
   type: string;
@@ -29,6 +34,34 @@ export const saveDetailsPokemonReducer = (
         loading: false,
         data: action.payload,
         error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const getDetailsPokemonReducer = (
+  state = initialState,
+  action: IActions
+) => {
+  switch (action.type) {
+    case GET_DETAILS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case GET_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        data: action.payload,
+      };
+    case GET_DETAILS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     default:
       return state;
