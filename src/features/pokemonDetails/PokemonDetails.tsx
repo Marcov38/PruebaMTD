@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { useSelector } from "react-redux";
+import "./PokemonDetails.css";
 
 const PokemonDetails = () => {
   const pokeDetails = useSelector(

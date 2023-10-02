@@ -1,0 +1,12 @@
+.p-card {
+  text-align: center;
+}
+
+.p-card-header img {
+  width: 30%;
+  align-self: center;
+}
+
+.p-card .p-card-body {
+  text-align: center;
+}

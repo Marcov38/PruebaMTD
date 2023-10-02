@@ -13,7 +13,6 @@ export const getPokemonsDetails = async (
   dispatch(getDetailsPokemonRequest());
   try {
     const { data } = await Service.getPokemonsDetailService(id);
-    console.log(data);
     if (data) {
       return dispatch(getDetailsPokemonSuccess(data));
     }
