@@ -6,11 +6,13 @@ import {
   getDetailsPokemonReducer,
   saveDetailsPokemonReducer,
 } from "./reducers/saveDetailsPokemonReducer";
+import { postPokemonsReducer } from "./reducers/postPokemonReducer";
 
 const rootreducer = combineReducers({
   pokemons: getPokemonsReducer,
   pokemonDetails: saveDetailsPokemonReducer,
   pokemonDetailsPersist: getDetailsPokemonReducer,
+  pokemonPost: postPokemonsReducer,
 });
 
 const middleware = [thunkMiddleware];

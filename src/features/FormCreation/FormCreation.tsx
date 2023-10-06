@@ -1,9 +1,14 @@
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import InputField from "../../components/InputField/InputField";
 import "./FormCreation.css";
+import { useDispatch } from "react-redux";
+import { postPokemons } from "./asyncAction";
+import { useRef } from "react";
+import { Toast } from "primereact/toast";
+import { IActions } from "../../redux/reducers/getPokemonReducer";
 
-interface Values {
+export interface Values {
   pokemonName: string | null;
   pokemonExperience: number | string;
   pokemonWeight: number | string;
@@ -11,6 +16,17 @@ interface Values {
 }
 
 const CreationForm = () => {
+  const toastRef = useRef<Toast>(null);
+
+  const showToast = (detail: string, severity: any, summary: string) => {
+    toastRef.current?.show({
+      severity: severity,
+      summary: summary,
+      detail: detail,
+      life: 3000,
+    });
+  };
+
   const validationSchema = Yup.object().shape({
     pokemonName: Yup.string()
       .min(2, "El nombre es muy corto")
@@ -34,16 +50,31 @@ const CreationForm = () => {
     pokemonWeight: "",
     pokemonType: "",
   };
+  const dispatch = useDispatch();
+  const postPokemon = async (
+    values: Values,
+    actions: FormikHelpers<Values>
+  ) => {
+    const response: IActions | undefined = await postPokemons(values, dispatch);
+    if (response?.payload.status === 201) {
+      actions.resetForm();
+      showToast("Su pokemon ha sido creado correctamente", "info", "Info");
+    } else {
+      showToast(
+        `Error al crear su pokemon, codigo de error ${response?.payload.status}`,
+        "error",
+        "Error"
+      );
+    }
+  };
   return (
     <div className="form formPrincipal">
       <h1>Añadir nuevo pokemon</h1>
+      <Toast ref={toastRef} />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values, actions) => {
-          console.log(values);
-          actions.resetForm();
-        }}
+        onSubmit={async (values, actions) => await postPokemon(values, actions)}
       >
         {(formikProps) => (
           <Form>
