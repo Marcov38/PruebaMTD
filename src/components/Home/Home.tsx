@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
       <div className="home">
-        <div className="home-title">Te damos la bienvenida a tu Pokedex</div>
+        <div className="home-title">Bienvenidos a Pokedex</div>
         <div className="homepage-cards">
           <div className="home-cards">
             <Card title="Mis Pokemons"></Card>

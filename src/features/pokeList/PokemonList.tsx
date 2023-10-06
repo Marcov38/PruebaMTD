@@ -59,6 +59,7 @@ const PokemonList = ({ pokemons }: PruebaProps) => {
                 } else if (col.field === "details") {
                   return (
                     <Button
+                      className="bg-primary border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700"
                       label="Detalles"
                       severity="success"
                       onClick={() => redirectTo(pokemon.id)}
