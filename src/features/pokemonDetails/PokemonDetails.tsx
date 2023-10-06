@@ -34,7 +34,7 @@ const PokemonDetails = () => {
   );
 
   return (
-    <div className="card flex justify-content-center">
+    <div className="card cardContainer">
       <Card
         title={pokeDetails?.name}
         subTitle={<p>Experiencia: {pokeDetails?.base_experience} </p>}

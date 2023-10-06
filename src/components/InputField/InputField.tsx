@@ -17,22 +17,24 @@ const InputField = ({
   return (
     <div className="field grid">
       <label className="col-fixed labelPokemon">{labelName}</label>
-      <InputText
-        type={type}
-        name={inputName}
-        className={
-          "text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" +
-          (formik.errors.inputName && formik.touched.inputName
-            ? " is-invalid"
-            : "")
-        }
-        onChange={formik.handleChange}
-        value={formik.values[inputName]}
-      />
-      <div className="invalid-feedback">
-        {formik.errors.inputName && formik.touched.inputName
-          ? formik.errors.inputName
-          : null}
+      <div className="fieldContainer">
+        <InputText
+          type={type}
+          name={inputName}
+          className={
+            "text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" +
+            (formik.errors[inputName] && formik.touched[inputName]
+              ? " is-invalid"
+              : "")
+          }
+          onChange={formik.handleChange}
+          value={formik.values[inputName]}
+        />
+        <div className="invalid-feedback">
+          {formik.errors[inputName] && formik.touched[inputName]
+            ? formik.errors[inputName]
+            : null}
+        </div>
       </div>
     </div>
   );

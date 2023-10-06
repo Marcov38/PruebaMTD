@@ -13,7 +13,7 @@ export default function Nabvar() {
 
   const items: MenuItem[] = [
     {
-      className: "p-1",
+      className: "p-0",
       label: "Home",
       icon: "pi pi-fw pi-home",
       command() {
@@ -22,7 +22,7 @@ export default function Nabvar() {
     },
 
     {
-      className: "p-1",
+      className: "p-0",
       label: "PokemonList",
       icon: "pi pi-fw pi-home",
       command() {
@@ -31,7 +31,7 @@ export default function Nabvar() {
     },
 
     {
-      className: "p-1",
+      className: "p-0",
       label: "New",
       icon: PrimeIcons.PLUS,
       command() {

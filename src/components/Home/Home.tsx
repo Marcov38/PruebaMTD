@@ -12,37 +12,6 @@ const Home = () => {
     <>
       <div className="home">
         <div className="home-title">Bienvenidos a Pokedex</div>
-        <div className="homepage-cards">
-          <div className="home-cards">
-            <Card title="Mis Pokemons"></Card>
-            <Button
-              onClick={() => redirecTo("/pokemons")}
-              label="Ver pokemons"
-              severity="info"
-              className="home-cards-button"
-            />
-          </div>
-
-          <div className="home-cards">
-            <Card title="Razas"></Card>
-            <Button
-              label="Ver razas"
-              severity="info"
-              className="home-cards-button"
-              onClick={() => redirecTo("/razas")}
-            />
-          </div>
-
-          <div className="home-cards">
-            <Card title="Mi equipo"></Card>
-            <Button
-              label="Ver equipo"
-              severity="info"
-              className="home-cards-button"
-              onClick={() => redirecTo("/mi-equipo")}
-            />
-          </div>
-        </div>
       </div>
     </>
   );

@@ -6,11 +6,9 @@ const FormCreation = lazy(
 
 const FormCreationPage = () => {
   return (
-    <div>
-      <Suspense fallback={<div>Cargando...</div>}>
-        <FormCreation />
-      </Suspense>
-    </div>
+    <Suspense fallback={<div>Cargando...</div>}>
+      <FormCreation />
+    </Suspense>
   );
 };
 

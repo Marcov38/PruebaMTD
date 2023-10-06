@@ -3,6 +3,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 2px solid red;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.formPrincipal h1 {
+  margin-bottom: 20px;
 }
 
 .formButtons {

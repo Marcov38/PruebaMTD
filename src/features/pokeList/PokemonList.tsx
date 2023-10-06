@@ -4,6 +4,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
+import "./PokemonList.css";
 
 interface PruebaProps {
   pokemons: Pokemon[] | undefined;
