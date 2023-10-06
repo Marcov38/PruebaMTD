@@ -7,43 +7,35 @@ import "./Navbar.css";
 export default function Nabvar() {
   const navigate = useNavigate();
 
-  const redirecToHome = () => {
-    navigate("/");
-  };
-
-  const redirecToPokeList = () => {
-    navigate("/pokemons");
-  };
-
-  const redirecToNewPokemon = () => {
-    navigate("/newpokemon");
+  const redirecTo = (path: string) => {
+    navigate(path);
   };
 
   const items: MenuItem[] = [
     {
-      className: "p-3",
+      className: "p-1",
       label: "Home",
       icon: "pi pi-fw pi-home",
       command() {
-        redirecToHome();
+        redirecTo("/");
       },
     },
 
     {
-      className: "p-3",
+      className: "p-1",
       label: "PokemonList",
       icon: "pi pi-fw pi-home",
       command() {
-        redirecToPokeList();
+        redirecTo("/pokemons");
       },
     },
 
     {
-      className: "p-3",
+      className: "p-1",
       label: "New",
       icon: PrimeIcons.PLUS,
       command() {
-        redirecToNewPokemon();
+        redirecTo("/newpokemon");
       },
     },
   ];
