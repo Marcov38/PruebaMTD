@@ -1,5 +1,5 @@
 import { InputText } from "primereact/inputtext";
-import React, { useEffect } from "react";
+import "./InputField.css";
 
 export interface InputFieldProps {
   labelName: string;
@@ -16,7 +16,7 @@ const InputField = ({
 }: InputFieldProps) => {
   return (
     <div className="field grid">
-      <label className="col-fixed">{labelName}</label>
+      <label className="col-fixed labelPokemon">{labelName}</label>
       <InputText
         type={type}
         name={inputName}
@@ -27,7 +27,7 @@ const InputField = ({
             : "")
         }
         onChange={formik.handleChange}
-        value={formik.values.inputName}
+        value={formik.values[inputName]}
       />
       <div className="invalid-feedback">
         {formik.errors.inputName && formik.touched.inputName
