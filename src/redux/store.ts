@@ -7,12 +7,14 @@ import {
   saveDetailsPokemonReducer,
 } from "./reducers/saveDetailsPokemonReducer";
 import { postPokemonsReducer } from "./reducers/postPokemonReducer";
+import { teamPokemonsReducer } from "./reducers/pokemonTeamReducer";
 
 const rootreducer = combineReducers({
   pokemons: getPokemonsReducer,
   pokemonDetails: saveDetailsPokemonReducer,
   pokemonDetailsPersist: getDetailsPokemonReducer,
   pokemonPost: postPokemonsReducer,
+  pokemonTeam: teamPokemonsReducer,
 });
 
 const middleware = [thunkMiddleware];
