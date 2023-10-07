@@ -106,7 +106,7 @@ interface Sprites {
   back_female: string | null;
   back_shiny: string | null;
   back_shiny_female: string | null;
-  front_default: string | null;
+  front_default: string | undefined;
   front_female: string | null;
   front_shiny: string | null;
   front_shiny_female: string | null;

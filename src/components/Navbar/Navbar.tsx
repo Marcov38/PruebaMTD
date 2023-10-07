@@ -32,10 +32,19 @@ export default function Nabvar() {
 
     {
       className: "p-0",
-      label: "New",
+      label: "AddPokemon",
       icon: PrimeIcons.PLUS,
       command() {
         redirecTo("/newpokemon");
+      },
+    },
+
+    {
+      className: "p-0",
+      label: "MyTeam",
+      icon: "pi pi-search",
+      command() {
+        redirecTo("/pokemons/team");
       },
     },
   ];
