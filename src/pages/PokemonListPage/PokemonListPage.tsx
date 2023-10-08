@@ -1,11 +1,10 @@
-import { lazy, Suspense, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { GetResponse, ServiceParams } from "../../features/pokeList/types";
-import { getPokemons } from "../../features/pokeList/asyncAction";
-import { saveDetailsPokemon } from "../../redux/actions/saveDetailsPokemon";
 import "primereact/resources/primereact.min.css";
-
-const PokemonList = lazy(() => import("../../features/pokeList/PokemonList"));
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import PokemonList from "../../features/pokeList/PokemonList";
+import { getPokemons } from "../../features/pokeList/asyncAction";
+import { ServiceParams } from "../../features/pokeList/types";
+import { saveDetailsPokemon } from "../../redux/actions/saveDetailsPokemon";
 
 const PokemonListPage = () => {
   const pokeDetails = useSelector((state: any) => state.pokemonDetails.data);
@@ -18,11 +17,9 @@ const PokemonListPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getPokemons(params, dispatch);
+      const { results } = await getPokemons(params);
 
-      const dataResults: GetResponse = response?.payload;
-
-      const pokemonPromise = dataResults.results.map(async (pokemon) => {
+      const pokemonPromise = results.map(async (pokemon) => {
         const responseDetail = await fetch(pokemon.url);
         const data = await responseDetail.json();
         return data;
@@ -37,9 +34,7 @@ const PokemonListPage = () => {
 
   return (
     <div>
-      <Suspense fallback={<div>Cargando...</div>}>
-        <PokemonList pokemons={pokeDetails} />
-      </Suspense>
+      <PokemonList pokemons={pokeDetails} />
     </div>
   );
 };

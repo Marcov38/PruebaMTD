@@ -1,10 +1,14 @@
+import { DateTime } from "luxon";
 import { Pokemon } from "../../features/pokeList/types";
 import {
   ADD_POKEMON_TEAM,
-  GET_POKEMON_TEAM,
   REMOVE_POKEMON_TEAM,
 } from "../types/pokemonTeamTypes";
-import { IActions } from "./getPokemonReducer";
+
+export interface IActions {
+  type: string;
+  payload: any;
+}
 
 interface InitialState {
   loading: boolean;
@@ -21,8 +25,17 @@ const initialState: InitialState = {
 export const teamPokemonsReducer = (state = initialState, action: IActions) => {
   switch (action.type) {
     case ADD_POKEMON_TEAM:
+      const pokeImg = action.payload.sprites?.front_default;
+      const pokeName = action.payload.name;
+      const pokeId = action.payload.id;
+      const dt = DateTime.now();
+      const dateAdded = dt.toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
+
       if (state.data.length < 5) {
-        const updateTeam = [...state.data, action.payload];
+        const updateTeam = [
+          ...state.data,
+          { pokeImg, pokeName, pokeId, dateAdded },
+        ];
         return {
           ...state,
           data: updateTeam,
@@ -34,14 +47,9 @@ export const teamPokemonsReducer = (state = initialState, action: IActions) => {
           error: "No se admiten mas de 5 pokemons en tu equipo",
         };
       }
-    case GET_POKEMON_TEAM:
-      return {
-        ...state,
-        error: null,
-      };
     case REMOVE_POKEMON_TEAM:
       const updateTeam = state.data.filter(
-        (pokemon) => pokemon.id !== action.payload
+        (pokemon, index) => index !== action.payload
       );
       return {
         ...state,

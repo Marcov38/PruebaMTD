@@ -23,8 +23,8 @@ export interface RemovePokemonTeamAction {
 }
 
 export const removePokemonTeam = (
-  pokemonId: number
+  pokemonIndex: number
 ): RemovePokemonTeamAction => ({
   type: REMOVE_POKEMON_TEAM,
-  payload: pokemonId,
+  payload: pokemonIndex,
 });

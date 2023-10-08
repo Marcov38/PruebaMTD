@@ -1,24 +1,13 @@
+import { Pokemon } from "../pokeList/types";
 import Service from "./service";
-import { Dispatch } from "redux";
-import {
-  getDetailsPokemonFailure,
-  getDetailsPokemonRequest,
-  getDetailsPokemonSuccess,
-} from "../../redux/actions/saveDetailsPokemon";
 
 export const getPokemonsDetails = async (
-  id: string | undefined,
-  dispatch: Dispatch
-) => {
-  dispatch(getDetailsPokemonRequest());
+  id: string | undefined
+): Promise<Pokemon> => {
   try {
     const { data } = await Service.getPokemonsDetailService(id);
-    if (data) {
-      return dispatch(getDetailsPokemonSuccess(data));
-    }
+    return data;
   } catch (error: any | null) {
-    return dispatch(
-      getDetailsPokemonFailure(error.isAxiosError ? error.response.data : error)
-    );
+    throw error;
   }
 };

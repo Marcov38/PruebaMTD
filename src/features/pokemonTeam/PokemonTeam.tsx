@@ -1,48 +1,35 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { removePokemonTeam } from "../../redux/actions/pokemonTeamActions";
-import { useRef } from "react";
-import { Toast } from "primereact/toast";
-import { Pokemon } from "../pokeList/types";
-import { Card } from "primereact/card";
 import { Button } from "primereact/button";
+import { Card } from "primereact/card";
+import { useNavigate } from "react-router-dom";
 
-const PokemonTeam = () => {
-  const toastRef = useRef<Toast>(null);
+interface Pokemon {
+  pokeId: number;
+  pokeImg: string;
+  pokeName: string;
+  dateAdded: string;
+}
 
-  const showToast = (detail: string, severity: any, summary: string) => {
-    toastRef.current?.show({
-      severity: severity,
-      summary: summary,
-      detail: detail,
-      life: 1500,
-    });
-  };
-  const team = useSelector((state: any) => state.pokemonTeam.data);
-  const dispatch = useDispatch();
+const PokemonTeam = ({ data, onRemove }) => {
   const navigate = useNavigate();
-  const onRemove = (pokemonId: number) => {
-    dispatch(removePokemonTeam(pokemonId));
-    showToast("Info", "info", "Pokemon agregado al equipo!");
-  };
+
   const redirecTo = (id: number) => {
     navigate(`/pokemons/${id}`);
   };
   return (
     <div className="team-container">
-      <Toast ref={toastRef} />
-      {team.map((pokemon: Pokemon) => (
-        <Card key={pokemon.id} title={pokemon.name} className="pokemonCard">
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+      {data.map((pokemon: Pokemon, index: number) => (
+        <Card key={index} title={pokemon.pokeName} className="pokemonCard">
+          {pokemon.dateAdded}
+          <img src={pokemon.pokeImg} alt={pokemon.pokeName} />
           <Button
             severity="danger"
             label="Quitar"
-            onClick={() => onRemove(pokemon.id)}
+            onClick={() => onRemove(index)}
           />
           <Button
             severity="success"
             label="Ver Detalles"
-            onClick={() => redirecTo(pokemon.id)}
+            onClick={() => redirecTo(pokemon.pokeId)}
           />
         </Card>
       ))}

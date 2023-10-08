@@ -1,25 +1,13 @@
-import {
-  getPokemonFailure,
-  getPokemonRequest,
-  getPokemonSuccess,
-} from "../../redux/actions/getPokemonsActions";
-import { ServiceParams } from "./types";
 import Service from "./service";
-import { Dispatch } from "redux";
+import { GetResponse, ServiceParams } from "./types";
 
 export const getPokemons = async (
-  dataParams: ServiceParams,
-  dispatch: Dispatch
-) => {
-  dispatch(getPokemonRequest());
+  dataParams: ServiceParams
+): Promise<GetResponse> => {
   try {
     const { data } = await Service.getPokemonsService(dataParams);
-    if (data.results) {
-      return dispatch(getPokemonSuccess(data));
-    }
+    return data;
   } catch (error: any | null) {
-    return dispatch(
-      getPokemonFailure(error.isAxiosError ? error.response.data : error)
-    );
+    throw error;
   }
 };
