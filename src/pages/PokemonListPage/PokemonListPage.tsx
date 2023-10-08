@@ -12,7 +12,7 @@ const PokemonListPage = () => {
 
   const params: ServiceParams = {
     offset: 0,
-    limit: 20,
+    limit: 150,
   };
 
   useEffect(() => {
