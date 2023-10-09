@@ -1,6 +1,7 @@
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { useNavigate } from "react-router-dom";
+import "./PokemonTeam.css";
 
 interface Pokemon {
   pokeId: number;
