@@ -5,9 +5,13 @@ import { Column } from "primereact/column";
 import { useNavigate } from "react-router-dom";
 import { Button } from "primereact/button";
 import "./PokemonList.css";
+import { Paginator, PaginatorPageChangeEvent } from "primereact/paginator";
 
 interface PruebaProps {
   pokemons: Pokemon[] | undefined;
+  onPageChange: (event: PaginatorPageChangeEvent) => void;
+  first: number;
+  rows: number;
 }
 
 interface TypePokemon {
@@ -20,7 +24,7 @@ interface PokeType {
   url: string;
 }
 
-const PokemonList = ({ pokemons }: PruebaProps) => {
+const PokemonList = ({ pokemons, onPageChange, first, rows }: PruebaProps) => {
   const navigate = useNavigate();
 
   const columns = [
@@ -69,6 +73,13 @@ const PokemonList = ({ pokemons }: PruebaProps) => {
           />
         ))}
       </DataTable>
+      <Paginator
+        first={first}
+        rows={rows}
+        totalRecords={120}
+        rowsPerPageOptions={[10, 20, 30]}
+        onPageChange={onPageChange}
+      />
     </Container>
   );
 };

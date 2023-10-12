@@ -5,14 +5,24 @@ import PokemonList from "../../features/pokeList/PokemonList";
 import { getPokemons } from "../../features/pokeList/asyncAction";
 import { ServiceParams } from "../../features/pokeList/types";
 import { saveDetailsPokemon } from "../../redux/actions/saveDetailsPokemon";
+import React, { useState } from "react";
+import { PaginatorPageChangeEvent } from "primereact/paginator";
 
 const PokemonListPage = () => {
   const pokeDetails = useSelector((state: any) => state.pokemonDetails.data);
+
   const dispatch = useDispatch();
 
+  const [first, setFirst] = useState<number>(0);
+  const [rows, setRows] = useState<number>(10);
+  const onPageChange = (event: PaginatorPageChangeEvent) => {
+    setFirst(event.first);
+    setRows(event.rows);
+  };
+
   const params: ServiceParams = {
-    offset: 0,
-    limit: 150,
+    offset: first,
+    limit: rows,
   };
 
   useEffect(() => {
@@ -34,7 +44,12 @@ const PokemonListPage = () => {
 
   return (
     <div>
-      <PokemonList pokemons={pokeDetails} />
+      <PokemonList
+        pokemons={pokeDetails}
+        onPageChange={onPageChange}
+        first={first}
+        rows={rows}
+      />
     </div>
   );
 };
